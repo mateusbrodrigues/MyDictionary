@@ -1,10 +1,10 @@
-let editId = null;
-
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker.register("/service-worker.js").then(() => {
     console.log("Service Worker Registered");
   });
 }
+
+let editId = null;
 
 function initIndexedDB() {
   return new Promise((resolve, reject) => {
