@@ -20,7 +20,7 @@ function initIndexedDB() {
     };
 
     request.onerror = (event) => {
-      reject("IndexedDB failed");
+      reject("IndexedDB initialization failed");
     };
   });
 }
@@ -43,6 +43,12 @@ function saveWord(db, word, definition) {
   } else {
     store.add({ word, definition });
   }
+}
+
+function deleteWord(db, id) {
+  const transaction = db.transaction(["words"], "readwrite");
+  const store = transaction.objectStore("words");
+  store.delete(id);
 }
 
 function renderTable(db) {
@@ -102,7 +108,4 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 
 /*TODO*/
-// Organize a name for the PWA and style the title
 // Handle exceptions
-// Put a description of what this PWA does and from where this API is called
-// Create a custom footer with my name
