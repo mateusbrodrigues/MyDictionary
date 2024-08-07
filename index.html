@@ -1,17 +1,57 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dictionary PWA</title>
+    <title>My Dictionary 📓</title>
     <link href="https://unpkg.com/@picocss/pico@1.5.6/css/pico.min.css" rel="stylesheet">
+    <style>
+       .buttonSearch {
+            background-color: #1d1d1d;
+            color: #fff;
+            border: none;
+            padding: 0.5em 1em;
+            cursor: pointer;
+        }
+        .buttonSearch:hover {
+            background-color: #333;
+        }
+        .editBtn,.deleteBtn{
+            background-color: #ffffff;
+            color: #fff;
+            border: none;
+            padding: 0.5em 1em;
+            cursor: pointer;
+        }
+        .editBtn:hover,.deleteBtn:hover {
+            background-color: #1d1d1d;
+        }
+        footer {
+            text-align: center;
+            padding: 1px;
+            margin-top: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        .footer-content {
+            display: inline-flex;
+            align-items: center;
+        }
+        a {
+            color: #000;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
     <main class="container">
-        <h1>Dictionary PWA</h1>
+        <h1>My Dictionary 📓</h1>
+        <p> This project was made with <a href="https://dictionaryapi.dev/">Free Dictionary API</a>. When searching for a word, the meaning will be saved on the table below, allowing to check whenever you want, including offline. </p>
         <form id="searchForm">
-            <input type="text" id="searchInput" placeholder="Search for a word..." required>
-            <button type="submit">Search</button>
+            <input type="text" id="searchInput" placeholder="Search for a english word..." required>
+            <button type="submit" class="buttonSearch">Search</button>
         </form>
         <table id="resultsTable">
             <thead>
@@ -28,7 +68,12 @@
             </tbody>
         </table>
     </main>
-
+    <footer>
+        <div class="footer-content">
+            <p>Created by <a href="https://github.com/mateusbrodrigues" target="_blank">Mateus Borges Rodrigues</a>,  2024 </p>
+           
+        </div>
+    </footer>
     <script src="app.js"></script>
 </body>
 </html>
