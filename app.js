@@ -1,5 +1,11 @@
 let editId = null;
 
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("/service-worker.js").then(() => {
+    console.log("Service Worker Registered");
+  });
+}
+
 function initIndexedDB() {
   return new Promise((resolve, reject) => {
     const request = indexedDB.open("DictionaryDB", 1);
