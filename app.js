@@ -27,6 +27,18 @@ async function fetchDefinition(word) {
   return data[0].meanings[0].definitions[0].definition;
 }
 
+function saveWord(db, word, definition) {
+  const transaction = db.transaction(["words"], "readwrite");
+  const store = transaction.objectStore("words");
+
+  if (editId) {
+    store.put({ id: editId, word, definition });
+    editId = null;
+  } else {
+    store.add({ word, definition });
+  }
+}
+
 function renderTable(db) {
   const transaction = db.transaction(["words"], "readonly");
   const store = transaction.objectStore("words");
