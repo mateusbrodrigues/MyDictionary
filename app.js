@@ -1,7 +1,9 @@
 if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.register("/service-worker.js").then(() => {
-    console.log("Service Worker Registered");
-  });
+  navigator.serviceWorker
+    .register("/MyDictionary/service-worker.js")
+    .then(() => {
+      console.log("Service Worker Registered");
+    });
 }
 
 let editId = null;
