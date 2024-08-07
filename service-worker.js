@@ -1,8 +1,8 @@
 const CACHE_NAME = "dictionary-pwa-v1";
 const URLS_TO_CACHE = [
-  "/",
-  "/index.html",
-  "/app.js",
+  "/MyDictionary/",
+  "/MyDictionary/index.html",
+  "/MyDictionary/app.js",
   "https://unpkg.com/@picocss/pico@1.5.6/css/pico.min.css",
 ];
 
