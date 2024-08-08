@@ -28,11 +28,24 @@ function initIndexedDB() {
 }
 
 async function fetchDefinition(word) {
-  const response = await fetch(
-    `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`
-  );
-  const data = await response.json();
-  return data[0].meanings[0].definitions[0].definition;
+  try {
+    const response = await fetch(
+      `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`
+    );
+    if (!response.ok) {
+      if (response.status === 404) {
+        throw new Error("Word not found on DictionaryAPI");
+      } else if (response.status === 503) {
+        throw new Error("Service temporarily unavailable");
+      } else {
+        throw new Error("An unexpected error occurred");
+      }
+    }
+    const data = await response.json();
+    return data[0].meanings[0].definitions[0].definition;
+  } catch (error) {
+    throw error;
+  }
 }
 
 function saveWord(db, word, definition) {
@@ -89,6 +102,16 @@ function renderTable(db) {
   };
 }
 
+function showNotification(message, type = "error") {
+  const notification = document.createElement("div");
+  notification.className = `notification ${type}`;
+  notification.textContent = message;
+  document.body.appendChild(notification);
+  setTimeout(() => {
+    document.body.removeChild(notification);
+  }, 3000);
+}
+
 document.addEventListener("DOMContentLoaded", async () => {
   const db = await initIndexedDB();
 
@@ -99,10 +122,14 @@ document.addEventListener("DOMContentLoaded", async () => {
       const word = document.getElementById("searchInput").value.trim();
 
       if (word) {
-        const definition = await fetchDefinition(word);
-        saveWord(db, word, definition);
-        renderTable(db);
-        document.getElementById("searchInput").value = "";
+        try {
+          const definition = await fetchDefinition(word);
+          saveWord(db, word, definition);
+          renderTable(db);
+          document.getElementById("searchInput").value = "";
+        } catch (error) {
+          showNotification(error.message, "error");
+        }
       }
     });
 

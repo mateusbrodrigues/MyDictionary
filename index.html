@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Dictionary 📓</title>
+    <title>My Dictionary</title>
     <link rel="icon" type="image/x-icon" href="icons/favicon.ico">
     <link href="https://unpkg.com/@picocss/pico@1.5.6/css/pico.min.css" rel="stylesheet">
     <link rel="manifest" href="manifest.json">
@@ -45,12 +45,23 @@
         a:hover {
             text-decoration: underline;
         }
+        .notification {
+            position: fixed;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgb(170, 0, 0);
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            z-index: 1000;
+        }
     </style>
 </head>
 <body>
     <main class="container">
         <h1>My Dictionary 📓</h1>
-        <p> This project was made with <a href="https://dictionaryapi.dev/">Free Dictionary API</a>. When searching for a word, the meaning will be saved on the table below, allowing to check whenever you want, including offline. </p>
+        <p> This project was made with <a href="https://dictionaryapi.dev/">Free Dictionary API</a>. When searching for a word, the meaning will be saved on the table below, allowing to check whenever you want, even offline. </p>
         <form id="searchForm">
             <input type="text" id="searchInput" placeholder="Search for a english word..." required>
             <button type="submit" class="buttonSearch">Search</button>
@@ -72,7 +83,7 @@
     </main>
     <footer>
         <div class="footer-content">
-            <p>Created by <a href="https://github.com/mateusbrodrigues" target="_blank">Mateus Borges Rodrigues</a>,  2024 </p>
+            <p>Created by <a href="https://github.com/mateusbrodrigues" target="_blank">Mateus Borges Rodrigues</a>,  2024. </p>
            
         </div>
     </footer>
