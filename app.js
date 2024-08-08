@@ -135,6 +135,3 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   renderTable(db);
 });
-
-/*TODO*/
-// Handle exceptions
